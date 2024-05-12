@@ -2,8 +2,8 @@
 
 namespace Softliya\Paytr\Payment;
 
-use Basket;
 use Softliya\Paytr\PayTRClient;
+use Softliya\Paytr\Utils\Basket;
 use Softliya\Paytr\PayTRResponse;
 use Softliya\Paytr\Enums\Currency;
 
