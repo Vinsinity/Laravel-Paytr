@@ -8,7 +8,7 @@
             "Softliya\\Paytr\\": "src/"
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
