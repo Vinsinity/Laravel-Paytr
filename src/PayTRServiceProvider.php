@@ -4,11 +4,10 @@ namespace Softliya\Paytr;
 
 use GuzzleHttp\Client;
 use Softliya\Paytr\PayTR;
-use Softliya\Paytr\Payment\Payment;
 use Illuminate\Support\ServiceProvider;
 use Softliya\Paytr\Exceptions\InvalidConfigException;
 
-class PaytrServiceProvider extends ServiceProvider
+class PayTRServiceProvider extends ServiceProvider
 {
     public function boot()
     {
