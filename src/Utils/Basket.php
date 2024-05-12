@@ -1,5 +1,7 @@
 <?php 
 
+namespace Softliya\Paytr\Utils;
+
 use Softliya\Paytr\Utils\Product;
 
 class Basket
