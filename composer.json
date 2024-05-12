@@ -1,6 +1,6 @@
 {
     "name": "softliya/paytr",
-    "description": "Paytr POS",
+    "description": "Laravel PayTR POS Library",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -19,6 +19,16 @@
     "config": {
         "allow-plugins": {
             "kylekatarnls/update-helper": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Softliya\\Paytr\\PayTRServiceProvider"
+            ],
+            "aliases": {
+                "PayTR": "Softliya\\Paytr\\PayTRFacade"
+            }
         }
     }
 }
