@@ -18,7 +18,12 @@ class PayTR {
     private $credentials;
     private $options;
 
-    public function createPayment(Payment $payment)
+    public function __construct($client, $credentials, $options = []) {
+        $this->client = $client;
+        $this->credentials = $credentials;
+        $this->options = $options;
+    }
+        public function createPayment(Payment $payment)
     {
         return $payment->setClient($this->client)
             ->setCredentials($this->credentials)

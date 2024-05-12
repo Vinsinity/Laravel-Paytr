@@ -2,11 +2,11 @@
 
 namespace Softliya\Paytr\Enums;
 
-enum Currency: string
+class Currency
 {
-    case TRY = 'TRY';
-    case EUR = 'EUR';
-    case USD = 'USD';
-    case GBP = 'GBP';
-    case RUB = 'RUB';
+    const TRY = 'TRY';
+    const EUR = 'EUR';
+    const USD = 'USD';
+    const GBP = 'GBP';
+    const RUB = 'RUB';
 }
