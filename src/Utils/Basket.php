@@ -11,6 +11,11 @@ class Basket
      */
     private $products = [];
 
+    public function __construct($products)
+    {
+        $this->products = $products;
+    }
+
     public function addProduct(Product $product, int $quantity)
     {
         $this->products[] = [
@@ -44,5 +49,10 @@ class Basket
     public function formatted(): string
     {
         return base64_encode(json_encode($this->products));
+    }
+
+    public function entity()
+    {
+        return htmlentities(json_encode($this->products));
     }
 }

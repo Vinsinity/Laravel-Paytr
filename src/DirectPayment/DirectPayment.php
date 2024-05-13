@@ -1,6 +1,8 @@
 <?php
 
 namespace Softliya\Paytr\DirectPayment;
+
+use Softliya\Paytr\Enums\Currency;
 use Softliya\Paytr\PayTRClient;
 use Softliya\Paytr\Utils\Basket;
 use Softliya\Paytr\PayTRResponse;
@@ -20,7 +22,9 @@ class DirectPayment extends PayTRClient {
 
     private ?int $installmentCount = 0;
 
-    private ?string $currency = 'TL';
+    private ?int $installmentStatus = 0;
+
+    private ?string $currency = Currency::TL;
 
     private ?int $non3d = 0;
 
@@ -175,6 +179,24 @@ class DirectPayment extends PayTRClient {
     public function setCardType(?string $cardType): static
     {
         $this->cardType = $cardType;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getInstallmentStatus(): ?int
+    {
+        return $this->installmentStatus;
+    }
+
+    /**
+     * @param int|null $installmentStatus
+     * @return DirectPayment
+     */
+    public function setInstallmentStatus(?int $installmentStatus): static
+    {
+        $this->installmentStatus = $installmentStatus;
         return $this;
     }
 
@@ -557,8 +579,7 @@ class DirectPayment extends PayTRClient {
 
     private function getHash(): string
     {
-        return '' .
-            $this->credentials['merchant_id'] .
+        return $this->credentials['merchant_id'] .
             $this->getUserIp() .
             $this->getMerchantOid() .
             $this->getEmail() .
@@ -568,7 +589,7 @@ class DirectPayment extends PayTRClient {
             $this->getCurrency() .
             (int)$this->options['test_mode'] .
             $this->getNon3d() .
-            $this->options['timeout'];
+            $this->credentials['merchant_salt'];
     }
 
     public function setSuccessUrl(string $url): static
@@ -630,9 +651,11 @@ class DirectPayment extends PayTRClient {
             'payment_type' => $this->getPaymentType(),
             'payment_amount' => $this->getPaymentAmount(),
             'installment_count' => $this->getInstallmentCount(),
-            'card_type' => $this->getCardType(),
+            // 'no_installment' => $this->getInstallmentStatus(),
+            'max_installment' => 0,
+            // 'card_type' => $this->getCardType(),
             'currency' => $this->getCurrency(),
-            'client_lang' => $this->getClientLang(),
+            'lang' => $this->getClientLang(),
             'test_mode' => (int)$this->options['test_mode'],
             'non_3d' => $this->getNon3d(),
             'non3d_test_failed' => $this->getNon3dTestFailed(),
@@ -641,7 +664,7 @@ class DirectPayment extends PayTRClient {
             'user_name' => $this->getUserName(),
             'user_address' => $this->getUserAddress(),
             'user_phone' => $this->getUserPhone(),
-            'user_basket' => $this->getBasket()->formatted(),
+            'user_basket' => $this->getBasket()->entity(),
             'debug_on' => $this->getDebugOn(),
             'sync_mode' => $this->getSyncMode(),
             'store_card' => $this->getStoreCard(),
@@ -657,7 +680,8 @@ class DirectPayment extends PayTRClient {
         $body['expiry_month'] = $this->getExpiryMonth();
         $body['expiry_year'] = $this->getExpiryYear();
         $body['cvv'] = $this->getCvv();
-
+        // return $body;
+        // return $this->generateToken($this->getHash());
         $response = $this->callApi('POST', 'odeme', $body);
         return $response->getBody();
     }
