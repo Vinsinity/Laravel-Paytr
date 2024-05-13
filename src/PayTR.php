@@ -2,7 +2,7 @@
 
 namespace Softliya\Paytr;
 
-use Basket;
+use Softliya\Paytr\Utils\Basket;
 use Softliya\Paytr\Payment\Payment;
 use Illuminate\Support\Facades\Request;
 use Softliya\Paytr\DirectPayment\CardStorage;

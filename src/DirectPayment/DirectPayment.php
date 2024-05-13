@@ -1,8 +1,8 @@
 <?php
 
 namespace Softliya\Paytr\DirectPayment;
-use Basket;
 use Softliya\Paytr\PayTRClient;
+use Softliya\Paytr\Utils\Basket;
 use Softliya\Paytr\PayTRResponse;
 
 class DirectPayment extends PayTRClient {

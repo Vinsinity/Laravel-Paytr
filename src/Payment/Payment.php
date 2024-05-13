@@ -361,8 +361,6 @@ class Payment extends PayTRClient {
     {
         $requestBody = $this->getBody();
         $response = $this->callApi('POST', 'odeme/api/get-token', $requestBody);
-//        return $response->getBody();
-//        return json_decode((string) $response->getBody());
         return new PayTRResponse(json_decode((string)$response->getBody(), true));
     }
 }
