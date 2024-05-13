@@ -568,7 +568,7 @@ class DirectPayment extends PayTRClient {
             $this->getCurrency() .
             (int)$this->options['test_mode'] .
             $this->getNon3d() .
-            $this->credentials['merchant_salt'];
+            $this->options['timeout'];
     }
 
     public function setSuccessUrl(string $url): static

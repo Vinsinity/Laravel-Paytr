@@ -4,7 +4,7 @@ namespace Softliya\Paytr\Enums;
 
 class Currency
 {
-    const TRY = 'TRY';
+    const TL = 'TL';
     const EUR = 'EUR';
     const USD = 'USD';
     const GBP = 'GBP';

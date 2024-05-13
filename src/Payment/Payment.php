@@ -66,7 +66,7 @@ class Payment extends PayTRClient {
     /**
      * @var string
      */
-    private $currency = Currency::TRY;
+    private $currency = Currency::TL;
 
     /**
      * @return string
